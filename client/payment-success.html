@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Successful - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="Thank you for your purchase! Your sustainable fashion order has been successfully processed. Track your order and view details.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Success Message -->
+    <section style="background-color: var(--pale-green); padding: 4rem 0;">
+        <div class="container" style="text-align: center;">
+            <div style="font-size: 4rem; margin-bottom: 1rem;">✅</div>
+            <h1 style="font-family: var(--font-heading); color: var(--primary-green); margin-bottom: 1rem;">Payment Successful!</h1>
+            <p style="font-size: 1.2rem; color: var(--dark-gray); margin-bottom: 2rem;">
+                Thank you for your sustainable fashion purchase. Your order has been confirmed and is being processed.
+            </p>
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                <a href="/orders" class="btn btn-primary">View Order History</a>
+                <a href="/products" class="btn btn-outline">Continue Shopping</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Details -->
+    <section>
+        <div class="container">
+            <div id="orderDetails" style="max-width: 800px; margin: 0 auto;">
+                <!-- Order details will be loaded here -->
+                <div style="text-align: center; padding: 3rem;">
+                    <div class="loading" style="width: 40px; height: 40px; margin: 0 auto;"></div>
+                    <p style="margin-top: 1rem;">Loading your order details...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Next Steps -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">What Happens Next?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📧</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Confirmation Email</h3>
+                    <p>You'll receive an order confirmation email shortly with all the details and tracking information once shipped.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">📦</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Order Processing</h3>
+                    <p>Your order will be carefully prepared and packaged using eco-friendly materials within 1-2 business days.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🚚</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Carbon Neutral Delivery</h3>
+                    <p>Your sustainable fashion items will be shipped via carbon-neutral delivery methods within 5-7 business days.</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2.5rem; margin-bottom: 1rem;">🌿</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Make an Impact</h3>
+                    <p>Enjoy your sustainable fashion knowing you've made a positive choice for the environment and ethical manufacturing.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Impact -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Your Environmental Impact</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center; background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    By choosing EcoStyle, you've contributed to a more sustainable fashion industry. Here's how:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; text-align: left;">
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--light-green);">💧</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Water Saved</h4>
+                        <p style="font-size: 0.9rem;">Hundreds of gallons saved compared to conventional fashion</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--light-green);">🌱</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Reduced Chemicals</h4>
+                        <p style="font-size: 0.9rem;">No harmful pesticides or chemicals in production</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--light-green);">🤝</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Fair Labor</h4>
+                        <p style="font-size: 0.9rem;">Supporting ethical manufacturing practices</p>
+                    </div>
+                    <div>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--light-green);">♻️</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Less Waste</h4>
+                        <p style="font-size: 0.9rem;">Durable products that reduce textile waste</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Share Your Purchase -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Share Your Sustainable Choice</h2>
+            <div style="max-width: 600px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">
+                    Help spread the word about sustainable fashion! Share your EcoStyle purchase with friends and family.
+                </p>
+                <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                    <button class="btn btn-outline" onclick="shareOnSocial('facebook')">
+                        📘 Share on Facebook
+                    </button>
+                    <button class="btn btn-outline" onclick="shareOnSocial('twitter')">
+                        🐦 Share on Twitter
+                    </button>
+                    <button class="btn btn-outline" onclick="shareOnSocial('instagram')">
+                        📷 Share on Instagram
+                    </button>
+                </div>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--medium-gray);">
+                    Use hashtag #EcoStyleFashion to join the sustainable fashion community!
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script>
+        let orderData = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Clear cart after successful payment
+            cart = [];
+            saveCartToStorage();
+            updateCartUI();
+
+            // Load order details
+            loadOrderDetails();
+        });
+
+        async function loadOrderDetails() {
+            try {
+                // Get URL parameters
+                const urlParams = new URLSearchParams(window.location.search);
+                const paymentId = urlParams.get('paymentId');
+                const payerId = urlParams.get('PayerID');
+
+                if (paymentId && payerId) {
+                    // Complete the PayPal payment
+                    await completePayPalPayment(paymentId, payerId);
+                } else {
+                    // Try to get the most recent order
+                    const response = await fetch('/api/orders?limit=1');
+                    const data = await response.json();
+                    
+                    if (response.ok && data.orders.length > 0) {
+                        orderData = data.orders[0];
+                        renderOrderDetails();
+                    } else {
+                        showMessage('Unable to load order details', 'error');
+                    }
+                }
+            } catch (error) {
+                console.error('Error loading order details:', error);
+                showMessage('Error loading order details', 'error');
+            }
+        }
+
+        async function completePayPalPayment(paymentId, payerId) {
+            try {
+                const checkoutData = JSON.parse(sessionStorage.getItem('ecostyle-checkout-data') || '{}');
+                
+                const response = await fetch('/api/paypal/execute-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        paymentId: paymentId,
+                        payerId: payerId,
+                        orderData: checkoutData
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    orderData = result.order;
+                    sessionStorage.removeItem('ecostyle-checkout-data');
+                    renderOrderDetails();
+                    showMessage('Payment completed successfully!', 'success');
+                } else {
+                    showMessage(result.error || 'Failed to complete payment', 'error');
+                }
+            } catch (error) {
+                console.error('Error completing PayPal payment:', error);
+                showMessage('Error completing payment', 'error');
+            }
+        }
+
+        function renderOrderDetails() {
+            if (!orderData) return;
+
+            const container = document.getElementById('orderDetails');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div style="background-color: var(--white); padding: 2rem; border-radius: var(--border-radius); box-shadow: var(--shadow-md);">
+                    <div style="text-align: center; margin-bottom: 2rem;">
+                        <h2 style="color: var(--primary-green); margin-bottom: 0.5rem;">Order Confirmed</h2>
+                        <div style="font-size: 1.5rem; font-weight: bold; color: var(--light-green);">${orderData.orderNumber}</div>
+                        <div style="color: var(--medium-gray);">${new Date(orderData.createdAt).toLocaleDateString()}</div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1rem;">Order Items</h3>
+                        ${orderData.items.map(item => `
+                            <div style="display: flex; justify-content: space-between; padding: 1rem 0; border-bottom: 1px solid var(--light-gray);">
+                                <div>
+                                    <div style="font-weight: bold;">${item.name}</div>
+                                    <div style="color: var(--medium-gray); font-size: 0.9rem;">Quantity: ${item.quantity}</div>
+                                </div>
+                                <div style="font-weight: bold; color: var(--light-green);">
+                                    $${(item.price * item.quantity).toFixed(2)}
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1rem;">Shipping Address</h3>
+                        <div style="background-color: var(--light-gray); padding: 1rem; border-radius: var(--border-radius);">
+                            <div>${orderData.shippingAddress.street}</div>
+                            <div>${orderData.shippingAddress.city}, ${orderData.shippingAddress.state} ${orderData.shippingAddress.zipCode}</div>
+                            <div>${orderData.shippingAddress.country}</div>
+                        </div>
+                    </div>
+
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1rem;">Order Summary</h3>
+                        <div style="background-color: var(--light-gray); padding: 1rem; border-radius: var(--border-radius);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Subtotal:</span>
+                                <span>$${(orderData.totalAmount * 0.9).toFixed(2)}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                                <span>Shipping:</span>
+                                <span>${orderData.totalAmount > 50 ? 'FREE' : '$10.00'}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-weight: bold; font-size: 1.2rem; color: var(--primary-green); padding-top: 0.5rem; border-top: 2px solid var(--medium-gray);">
+                                <span>Total:</span>
+                                <span>$${orderData.totalAmount.toFixed(2)}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="text-align: center;">
+                        <div class="order-status status-completed" style="display: inline-block;">
+                            ${orderData.paymentStatus.charAt(0).toUpperCase() + orderData.paymentStatus.slice(1)}
+                        </div>
+                        ${orderData.paypalOrderId ? `
+                            <div style="margin-top: 1rem; font-size: 0.9rem; color: var(--medium-gray);">
+                                PayPal Order ID: ${orderData.paypalOrderId}
+                            </div>
+                        ` : ''}
+                    </div>
+                </div>
+            `;
+        }
+
+        function shareOnSocial(platform) {
+            const text = `I just made a sustainable fashion purchase from EcoStyle! 🌿 Supporting ethical manufacturing and eco-friendly clothing. #EcoStyleFashion #SustainableFashion`;
+            const url = window.location.href;
+
+            let shareUrl = '';
+            
+            switch(platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+                    break;
+                case 'instagram':
+                    // Instagram doesn't support direct URL sharing
+                    showMessage('Share your purchase on Instagram with #EcoStyleFashion!', 'success');
+                    return;
+            }
+
+            if (shareUrl) {
+                window.open(shareUrl, '_blank', 'width=600,height=400');
+            }
+        }
+    </script>
+</body>
+</html>

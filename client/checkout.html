@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="Complete your sustainable fashion purchase at EcoStyle. Secure checkout with PayPal. Free shipping on orders over $50.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://www.paypal.com/sdk/js?client-id=ARpco9w4D-K-3wQJDwiTlU1QkIgW3yLuB63T5lKx_lZEPdgW5oF_1Usy8GZ5t5gzNXDoSmnlmkX4stJF&currency=USD&disable-funding=credit,card"></script>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--pale-green); padding: 3rem 0;">
+        <div class="container">
+            <h1 style="font-family: var(--font-heading); color: var(--primary-green); margin-bottom: 1rem;">Secure Checkout</h1>
+            <p style="font-size: 1.1rem; color: var(--dark-gray);">Complete your sustainable fashion purchase with PayPal</p>
+        </div>
+    </section>
+
+    <!-- Checkout Content -->
+    <section>
+        <div class="container">
+            <div class="checkout-container">
+                <!-- Order Summary -->
+                <div class="checkout-section">
+                    <h2 style="color: var(--primary-green); margin-bottom: 1.5rem;">Order Summary</h2>
+                    <div id="checkoutItems">
+                        <!-- Checkout items will be loaded here -->
+                        <div style="text-align: center; padding: 2rem;">
+                            <div class="loading" style="width: 30px; height: 30px; margin: 0 auto;"></div>
+                            <p style="margin-top: 1rem;">Loading order summary...</p>
+                        </div>
+                    </div>
+                    
+                    <div id="checkoutSummary" style="margin-top: 2rem;">
+                        <!-- Checkout summary will be loaded here -->
+                    </div>
+                </div>
+
+                <!-- Shipping Information -->
+                <div class="checkout-section">
+                    <h2 style="color: var(--primary-green); margin-bottom: 1.5rem;">Shipping Information</h2>
+                    <form id="shippingForm">
+                        <div class="form-group">
+                            <label for="email" class="form-label">Email Address *</label>
+                            <input type="email" id="email" name="email" class="form-input" required 
+                                   placeholder="your@email.com">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="street" class="form-label">Street Address *</label>
+                            <input type="text" id="street" name="street" class="form-input" required 
+                                   placeholder="123 Main Street">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="city" class="form-label">City *</label>
+                                <input type="text" id="city" name="city" class="form-input" required 
+                                       placeholder="New York">
+                            </div>
+                            <div class="form-group">
+                                <label for="state" class="form-label">State *</label>
+                                <input type="text" id="state" name="state" class="form-input" required 
+                                       placeholder="NY">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="zipCode" class="form-label">ZIP Code *</label>
+                                <input type="text" id="zipCode" name="zipCode" class="form-input" required 
+                                       placeholder="10001">
+                            </div>
+                            <div class="form-group">
+                                <label for="country" class="form-label">Country *</label>
+                                <select id="country" name="country" class="form-select" required>
+                                    <option value="US">United States</option>
+                                    <option value="CA">Canada</option>
+                                    <option value="UK">United Kingdom</option>
+                                    <option value="AU">Australia</option>
+                                    <option value="DE">Germany</option>
+                                    <option value="FR">France</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="notes" class="form-label">Order Notes (Optional)</label>
+                            <textarea id="notes" name="notes" class="form-textarea" 
+                                      placeholder="Special instructions for delivery..."
+                                      rows="3"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Payment Section -->
+            <div class="checkout-container" style="margin-top: 2rem;">
+                <div class="checkout-section" style="grid-column: 1 / -1;">
+                    <h2 style="color: var(--primary-green); margin-bottom: 1.5rem;">Payment Method</h2>
+                    
+                    <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius); margin-bottom: 2rem;">
+                        <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🔒 Secure Payment with PayPal</h3>
+                        <p style="margin-bottom: 1rem;">We use PayPal to ensure your payment information is secure. You can pay with your PayPal account or credit/debit card.</p>
+                        <ul style="margin: 0; padding-left: 1.5rem; color: var(--dark-gray);">
+                            <li>Buyer protection for all purchases</li>
+                            <li>Encrypted payment processing</li>
+                            <li>Multiple payment options</li>
+                            <li>No sharing of financial information</li>
+                        </ul>
+                    </div>
+
+                    <!-- PayPal Button Container -->
+                    <div id="paypalButtonContainer" class="paypal-button-container">
+                        <button id="initiatePayment" class="btn btn-primary" style="width: 100%; padding: 1.5rem; font-size: 1.1rem;">
+                            Proceed to PayPal Payment
+                        </button>
+                    </div>
+
+                    <div style="text-align: center; margin-top: 1rem;">
+                        <small style="color: var(--medium-gray);">
+                            By completing this purchase, you agree to our Terms of Service and Privacy Policy.
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Shop with Confidence</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🔒</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Secure Payment</h3>
+                    <p style="font-size: 0.9rem;">PayPal's secure payment processing</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🌿</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Sustainable</h3>
+                    <p style="font-size: 0.9rem;">Every purchase supports sustainability</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🚚</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Free Shipping</h3>
+                    <p style="font-size: 0.9rem;">On orders over $50</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-size: 2rem; margin-bottom: 1rem;">🔄</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Easy Returns</h3>
+                    <p style="font-size: 0.9rem;">30-day return policy</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script>
+        let checkoutData = {
+            items: [],
+            totalAmount: 0,
+            shippingAddress: null
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCheckoutData();
+            
+            // Initialize payment button
+            document.getElementById('initiatePayment').addEventListener('click', initiatePayPalPayment);
+        });
+
+        async function loadCheckoutData() {
+            try {
+                // Get cart items
+                const productIds = cart.map(item => item.productId);
+                const productPromises = productIds.map(id => fetch(`/api/products/${id}`));
+                const responses = await Promise.all(productPromises);
+                const productData = await Promise.all(responses.map(res => res.json()));
+
+                checkoutData.items = cart.map((cartItem, index) => {
+                    const productResponse = productData[index];
+                    const product = productResponse.product;
+                    return {
+                        product: product._id,
+                        productId: product._id,
+                        name: product.name,
+                        price: product.price,
+                        quantity: cartItem.quantity,
+                        ecoTags: product.ecoTags
+                    };
+                });
+
+                // Calculate totals
+                const subtotal = checkoutData.items.reduce((total, item) => total + (item.price * item.quantity), 0);
+                const shipping = subtotal > 50 ? 0 : 10;
+                checkoutData.totalAmount = subtotal + shipping;
+
+                renderCheckoutItems();
+                renderCheckoutSummary(subtotal, shipping);
+
+            } catch (error) {
+                console.error('Error loading checkout data:', error);
+                showMessage('Error loading checkout data', 'error');
+            }
+        }
+
+        function renderCheckoutItems() {
+            const container = document.getElementById('checkoutItems');
+            if (!container) return;
+
+            container.innerHTML = checkoutData.items.map(item => `
+                <div style="display: flex; gap: 1rem; padding: 1rem; background-color: var(--light-gray); border-radius: var(--border-radius); margin-bottom: 1rem;">
+                    <div style="flex: 1;">
+                        <h4 style="margin: 0 0 0.5rem 0; color: var(--primary-green);">${item.name}</h4>
+                        <p style="margin: 0; color: var(--medium-gray);">Quantity: ${item.quantity}</p>
+                    </div>
+                    <div style="text-align: right;">
+                        <div style="font-weight: bold; color: var(--light-green);">
+                            $${(item.price * item.quantity).toFixed(2)}
+                        </div>
+                        <div style="font-size: 0.9rem; color: var(--medium-gray);">
+                            $${item.price.toFixed(2)} each
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function renderCheckoutSummary(subtotal, shipping) {
+            const container = document.getElementById('checkoutSummary');
+            if (!container) return;
+
+            container.innerHTML = `
+                <div style="background-color: var(--white); padding: 1.5rem; border-radius: var(--border-radius); border: 2px solid var(--light-green);">
+                    <div class="summary-row">
+                        <span>Subtotal:</span>
+                        <span>$${subtotal.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row">
+                        <span>Shipping:</span>
+                        <span>${shipping === 0 ? 'FREE' : '$' + shipping.toFixed(2)}</span>
+                    </div>
+                    <div class="summary-row total">
+                        <span>Total:</span>
+                        <span>$${checkoutData.totalAmount.toFixed(2)}</span>
+                    </div>
+                </div>
+            `;
+        }
+
+        async function initiatePayPalPayment() {
+            // Validate shipping form
+            const form = document.getElementById('shippingForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            // Get shipping address
+            const formData = new FormData(form);
+            checkoutData.buyerEmail = formData.get('email');
+            checkoutData.shippingAddress = {
+                street: formData.get('street'),
+                city: formData.get('city'),
+                state: formData.get('state'),
+                zipCode: formData.get('zipCode'),
+                country: formData.get('country')
+            };
+            checkoutData.notes = formData.get('notes');
+
+            try {
+                // Create PayPal payment
+                const response = await fetch('/api/paypal/create-payment', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        items: checkoutData.items.map(item => ({
+                            name: item.name,
+                            productId: item.productId,
+                            price: item.price,
+                            quantity: item.quantity
+                        })),
+                        totalAmount: checkoutData.totalAmount,
+                        returnUrl: `${window.location.origin}/payment/success`,
+                        cancelUrl: `${window.location.origin}/payment/cancel`
+                    })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    // Store checkout data for payment completion
+                    sessionStorage.setItem('ecostyle-checkout-data', JSON.stringify(checkoutData));
+                    
+                    // Redirect to PayPal
+                    window.location.href = result.approvalUrl;
+                } else {
+                    showMessage(result.error || 'Failed to create payment', 'error');
+                }
+            } catch (error) {
+                console.error('Error initiating PayPal payment:', error);
+                showMessage('Error initiating payment. Please try again.', 'error');
+            }
+        }
+    </script>
+</body>
+</html>

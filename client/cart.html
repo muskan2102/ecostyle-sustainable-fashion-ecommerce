@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="Review your sustainable fashion selections in the EcoStyle shopping cart. Proceed to checkout with PayPal for secure payment.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--pale-green); padding: 3rem 0;">
+        <div class="container">
+            <h1 style="font-family: var(--font-heading); color: var(--primary-green); margin-bottom: 1rem;">Shopping Cart</h1>
+            <p style="font-size: 1.1rem; color: var(--dark-gray);">Review your sustainable fashion selections</p>
+        </div>
+    </section>
+
+    <!-- Cart Content -->
+    <section>
+        <div class="container">
+            <div style="display: grid; grid-template-columns: 2fr 1fr; gap: 3rem;">
+                <!-- Cart Items -->
+                <div>
+                    <div id="cartContainer" class="cart-container">
+                        <!-- Cart items will be loaded here -->
+                        <div style="text-align: center; padding: 3rem;">
+                            <div class="loading" style="width: 40px; height: 40px; margin: 0 auto;"></div>
+                            <p style="margin-top: 1rem;">Loading your cart...</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Continue Shopping -->
+                    <div style="margin-top: 2rem; text-align: center;">
+                        <a href="/products" class="btn btn-outline">← Continue Shopping</a>
+                    </div>
+                </div>
+
+                <!-- Cart Summary -->
+                <div>
+                    <div id="cartSummary" class="cart-summary">
+                        <!-- Cart summary will be loaded here -->
+                        <div style="text-align: center; padding: 2rem;">
+                            <div class="loading" style="width: 30px; height: 30px; margin: 0 auto;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Eco Impact Section -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Your Environmental Impact</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">💧</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Water Saved</h3>
+                    <p>By choosing sustainable fashion, you're helping save thousands of gallons of water compared to conventional clothing.</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">🌱</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Reduced Chemicals</h3>
+                    <p>Organic materials mean fewer harmful pesticides and chemicals in our environment and waterways.</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">♻️</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Less Waste</h3>
+                    <p>Durable, high-quality sustainable clothing lasts longer, reducing textile waste in landfills.</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">🤝</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Fair Labor</h3>
+                    <p>Your purchase supports ethical manufacturing practices and fair wages for workers.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shipping Information -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Shipping & Returns</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🚚 Carbon Neutral Shipping</h3>
+                    <p>We offset the carbon footprint of every delivery through partnerships with environmental organizations. Standard shipping takes 5-7 business days.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">📦 Eco-Friendly Packaging</h3>
+                    <p>All orders are shipped in recyclable or biodegradable packaging materials. We use minimal packaging to reduce waste.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🔄 Easy Returns</h3>
+                    <p>If you're not satisfied with your purchase, we offer hassle-free returns within 30 days. Items must be unworn and in original condition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+</body>
+</html>

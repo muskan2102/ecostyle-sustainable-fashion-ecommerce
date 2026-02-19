@@ -1,0 +1,32 @@
+{
+  "name": "ecostyle",
+  "version": "1.0.0",
+  "description": "Sustainable fashion e-commerce web application",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js",
+    "seed": "node server/scripts/seedDatabase.js",
+    "build": "echo 'No build step needed for vanilla JS'",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "keywords": ["ecommerce", "sustainable", "fashion", "paypal", "mongodb"],
+  "author": "EcoStyle Team",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
+    "paypal-rest-sdk": "^1.8.1",
+    "path": "^0.12.7",
+    "helmet": "^7.1.0",
+    "express-rate-limit": "^7.1.5",
+    "validator": "^13.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}

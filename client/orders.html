@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order History - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="View your order history from EcoStyle sustainable fashion. Track orders, view details, and manage your sustainable fashion purchases.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders" class="active">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section style="background-color: var(--pale-green); padding: 3rem 0;">
+        <div class="container">
+            <h1 style="font-family: var(--font-heading); color: var(--primary-green); margin-bottom: 1rem;">Order History</h1>
+            <p style="font-size: 1.1rem; color: var(--dark-gray);">Track your sustainable fashion purchases and view order details</p>
+        </div>
+    </section>
+
+    <!-- Order Filters -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-container">
+                <select id="statusFilter" class="filter-select">
+                    <option value="">All Orders</option>
+                    <option value="completed">Completed</option>
+                    <option value="pending">Pending</option>
+                    <option value="cancelled">Cancelled</option>
+                    <option value="failed">Failed</option>
+                </select>
+                <input type="email" id="emailFilter" class="search-input" placeholder="Filter by email address...">
+                <button id="filterOrders" class="btn btn-primary">Filter Orders</button>
+                <button id="clearFilters" class="btn btn-outline">Clear Filters</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orders List -->
+    <section>
+        <div class="container">
+            <div id="ordersContainer">
+                <!-- Orders will be loaded here -->
+                <div style="text-align: center; padding: 3rem;">
+                    <div class="loading" style="width: 40px; height: 40px; margin: 0 auto;"></div>
+                    <p style="margin-top: 1rem;">Loading your order history...</p>
+                </div>
+            </div>
+            
+            <!-- Load More Button -->
+            <div id="loadMoreContainer" style="text-align: center; margin-top: 2rem; display: none;">
+                <button id="loadMoreBtn" class="btn btn-secondary">Load More Orders</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Order Statistics -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Your Sustainable Impact</h2>
+            <div id="impactStats" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <!-- Impact stats will be calculated and displayed here -->
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">0</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Total Orders</h3>
+                    <p style="font-size: 0.9rem;">Sustainable purchases made</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">$0</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Total Spent</h3>
+                    <p style="font-size: 0.9rem;">Invested in sustainability</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">0</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Items Purchased</h3>
+                    <p style="font-size: 0.9rem;">Eco-friendly products</p>
+                </div>
+                <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                    <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">💧</div>
+                    <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Water Saved</h3>
+                    <p style="font-size: 0.9rem;">Environmental impact</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Need Help with Your Orders?</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">📦 Track Your Order</h3>
+                    <p>Once your order ships, you'll receive a tracking number via email. Use this to monitor your delivery's progress.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🔄 Returns & Exchanges</h3>
+                    <p>Not satisfied with your purchase? We offer hassle-free 30-day returns and exchanges on all items.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">💬 Customer Support</h3>
+                    <p>Have questions about your order? Our support team is here to help via email or live chat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script>
+        let allOrders = [];
+        let filteredOrders = [];
+        let currentPage = 1;
+        const ordersPerPage = 10;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            loadOrderHistory();
+            
+            // Set up filter event listeners
+            document.getElementById('filterOrders').addEventListener('click', applyFilters);
+            document.getElementById('clearFilters').addEventListener('click', clearFilters);
+            document.getElementById('statusFilter').addEventListener('change', applyFilters);
+        });
+
+        async function loadOrderHistory() {
+            try {
+                const response = await fetch('/api/orders');
+                const data = await response.json();
+                
+                if (response.ok) {
+                    allOrders = data.orders;
+                    filteredOrders = [...allOrders];
+                    renderOrders();
+                    calculateImpactStats();
+                } else {
+                    showMessage('Failed to load order history', 'error');
+                }
+            } catch (error) {
+                console.error('Error loading order history:', error);
+                showMessage('Error loading order history', 'error');
+            }
+        }
+
+        function renderOrders() {
+            const container = document.getElementById('ordersContainer');
+            if (!container) return;
+
+            if (filteredOrders.length === 0) {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 3rem;">
+                        <h3>No orders found</h3>
+                        <p>${allOrders.length === 0 ? 'Start shopping to see your order history!' : 'Try adjusting your filters'}</p>
+                        ${allOrders.length === 0 ? '<a href="/products" class="btn btn-primary">Shop Now</a>' : ''}
+                    </div>
+                `;
+                return;
+            }
+
+            const startIndex = (currentPage - 1) * ordersPerPage;
+            const endIndex = startIndex + ordersPerPage;
+            const ordersToShow = filteredOrders.slice(startIndex, endIndex);
+
+            container.innerHTML = ordersToShow.map(order => `
+                <div class="order-card">
+                    <div class="order-header">
+                        <div>
+                            <div class="order-number">${order.orderNumber}</div>
+                            <div style="color: var(--medium-gray); font-size: 0.9rem;">
+                                ${new Date(order.createdAt).toLocaleDateString()} at ${new Date(order.createdAt).toLocaleTimeString()}
+                            </div>
+                            ${order.buyerEmail ? `<div style="color: var(--medium-gray); font-size: 0.9rem;">${order.buyerEmail}</div>` : ''}
+                        </div>
+                        <div class="order-status status-${order.paymentStatus}">
+                            ${order.paymentStatus.charAt(0).toUpperCase() + order.paymentStatus.slice(1)}
+                        </div>
+                    </div>
+                    
+                    <div class="order-items">
+                        ${order.items.map(item => `
+                            <div class="order-item">
+                                <div>
+                                    <strong>${item.name}</strong>
+                                    <div style="font-size: 0.9rem; color: var(--medium-gray);">
+                                        ${item.ecoTags && item.ecoTags.length > 0 ? 
+                                            item.ecoTags.slice(0, 2).map(tag => 
+                                                `<span class="eco-tag" style="font-size: 0.7rem;">${tag.replace('-', ' ')}</span>`
+                                            ).join(' ') : ''
+                                        }
+                                    </div>
+                                </div>
+                                <div>
+                                    <div>Qty: ${item.quantity}</div>
+                                    <div style="font-weight: bold; color: var(--light-green);">
+                                        $${(item.price * item.quantity).toFixed(2)}
+                                    </div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--light-gray);">
+                        <div class="summary-row total" style="margin: 0;">
+                            <span>Total:</span>
+                            <span>$${order.totalAmount.toFixed(2)}</span>
+                        </div>
+                        <div>
+                            ${order.paymentStatus === 'completed' && order.paypalOrderId ? `
+                                <small style="color: var(--medium-gray); display: block; margin-bottom: 0.5rem;">
+                                    PayPal ID: ${order.paypalOrderId}
+                                </small>
+                            ` : ''}
+                            <button class="btn btn-outline" onclick="viewOrderDetails('${order._id}')">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            // Show/hide load more button
+            const loadMoreContainer = document.getElementById('loadMoreContainer');
+            if (endIndex < filteredOrders.length) {
+                loadMoreContainer.style.display = 'block';
+            } else {
+                loadMoreContainer.style.display = 'none';
+            }
+        }
+
+        function calculateImpactStats() {
+            const completedOrders = allOrders.filter(order => order.paymentStatus === 'completed');
+            const totalOrders = completedOrders.length;
+            const totalSpent = completedOrders.reduce((sum, order) => sum + order.totalAmount, 0);
+            const totalItems = completedOrders.reduce((sum, order) => 
+                sum + order.items.reduce((itemSum, item) => itemSum + item.quantity, 0), 0
+            );
+
+            const impactStats = document.getElementById('impactStats');
+            if (impactStats) {
+                impactStats.innerHTML = `
+                    <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">${totalOrders}</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Total Orders</h3>
+                        <p style="font-size: 0.9rem;">Sustainable purchases made</p>
+                    </div>
+                    <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">$${totalSpent.toFixed(0)}</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Total Spent</h3>
+                        <p style="font-size: 0.9rem;">Invested in sustainability</p>
+                    </div>
+                    <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">${totalItems}</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Items Purchased</h3>
+                        <p style="font-size: 0.9rem;">Eco-friendly products</p>
+                    </div>
+                    <div style="text-align: center; background-color: var(--white); padding: 2rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2.5rem; font-weight: bold; color: var(--light-green);">💧</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Water Saved</h3>
+                        <p style="font-size: 0.9rem;">~${(totalItems * 50).toLocaleString()} gallons</p>
+                    </div>
+                `;
+            }
+        }
+
+        function applyFilters() {
+            const statusFilter = document.getElementById('statusFilter').value;
+            const emailFilter = document.getElementById('emailFilter').value.toLowerCase();
+
+            filteredOrders = allOrders.filter(order => {
+                const matchesStatus = !statusFilter || order.paymentStatus === statusFilter;
+                const matchesEmail = !emailFilter || 
+                    (order.buyerEmail && order.buyerEmail.toLowerCase().includes(emailFilter));
+                
+                return matchesStatus && matchesEmail;
+            });
+
+            currentPage = 1;
+            renderOrders();
+            
+            showMessage(`Found ${filteredOrders.length} orders matching your filters`, 'success');
+        }
+
+        function clearFilters() {
+            document.getElementById('statusFilter').value = '';
+            document.getElementById('emailFilter').value = '';
+            
+            filteredOrders = [...allOrders];
+            currentPage = 1;
+            renderOrders();
+            
+            showMessage('Filters cleared', 'success');
+        }
+
+        function viewOrderDetails(orderId) {
+            // In a real application, this might open a modal or navigate to a detailed page
+            // For now, we'll just show a simple alert with key information
+            const order = allOrders.find(o => o._id === orderId);
+            if (order) {
+                alert(`Order Details:\n\nOrder Number: ${order.orderNumber}\nStatus: ${order.paymentStatus}\nTotal: $${order.totalAmount.toFixed(2)}\nDate: ${new Date(order.createdAt).toLocaleDateString()}\n\nFor more detailed information, please contact customer support.`);
+            }
+        }
+
+        // Load more functionality
+        document.addEventListener('click', function(e) {
+            if (e.target && e.target.id === 'loadMoreBtn') {
+                currentPage++;
+                renderOrders();
+            }
+        });
+    </script>
+</body>
+</html>

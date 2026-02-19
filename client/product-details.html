@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="View detailed information about our sustainable fashion products including materials, care instructions, and environmental impact.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Breadcrumb -->
+    <section style="background-color: var(--light-gray); padding: 1rem 0;">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol style="display: flex; list-style: none; gap: 0.5rem; margin: 0; padding: 0; font-size: 0.9rem;">
+                    <li><a href="/" style="color: var(--medium-gray); text-decoration: none;">Home</a></li>
+                    <li style="color: var(--medium-gray);">/</li>
+                    <li><a href="/products" style="color: var(--medium-gray); text-decoration: none;">Products</a></li>
+                    <li style="color: var(--medium-gray);">/</li>
+                    <li style="color: var(--primary-green); font-weight: bold;">Product Details</li>
+                </ol>
+            </nav>
+        </div>
+    </section>
+
+    <!-- Product Details -->
+    <section>
+        <div class="container">
+            <div id="productDetails">
+                <!-- Product details will be loaded here -->
+                <div style="text-align: center; padding: 3rem;">
+                    <div class="loading" style="width: 40px; height: 40px; margin: 0 auto;"></div>
+                    <p style="margin-top: 1rem;">Loading product details...</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Products -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">You Might Also Like</h2>
+            <div id="relatedProducts" class="product-grid">
+                <!-- Related products will be loaded here -->
+                <div class="loading" style="grid-column: 1/-1; text-align: center; padding: 2rem;">
+                    <div class="loading" style="width: 30px; height: 30px; margin: 0 auto;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sustainability Info -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Our Sustainability Promise</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🌱 Organic Materials</h3>
+                    <p>All our products are made from certified organic materials that are grown without harmful pesticides or chemicals, ensuring the health of both farmers and the environment.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">♻️ Recycled Content</h3>
+                    <p>Many of our items incorporate recycled materials, reducing waste and minimizing the environmental impact of production while maintaining high quality standards.</p>
+                </div>
+                <div style="background-color: var(--light-gray); padding: 2rem; border-radius: var(--border-radius);">
+                    <h3 style="color: var(--primary-green); margin-bottom: 1rem;">🤝 Fair Trade</h3>
+                    <p>We partner with manufacturers who provide fair wages, safe working conditions, and respect workers' rights throughout our entire supply chain.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Care Instructions -->
+    <section style="background-color: var(--pale-green);">
+        <div class="container">
+            <h2 class="section-title">Care Instructions</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem;">Proper care extends the life of your sustainable fashion items and reduces environmental impact.</p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <div style="background-color: var(--white); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">💧</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Wash Cold</h4>
+                        <p style="font-size: 0.9rem;">Use cold water to save energy and preserve fabric quality</p>
+                    </div>
+                    <div style="background-color: var(--white); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🌬️</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Air Dry</h4>
+                        <p style="font-size: 0.9rem;">Line dry when possible to reduce energy consumption</p>
+                    </div>
+                    <div style="background-color: var(--white); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔄</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Wash Less</h4>
+                        <p style="font-size: 0.9rem;">Only wash when necessary to extend garment life</p>
+                    </div>
+                    <div style="background-color: var(--white); padding: 1.5rem; border-radius: var(--border-radius);">
+                        <div style="font-size: 2rem; margin-bottom: 0.5rem;">♻️</div>
+                        <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Recycle</h4>
+                        <p style="font-size: 0.9rem;">Recycle or upcycle when the item reaches end of life</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script>
+        // Load related products after main product loads
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(loadRelatedProducts, 1000);
+        });
+
+        async function loadRelatedProducts() {
+            if (!currentProduct) return;
+            
+            try {
+                const response = await fetch(`/api/products?category=${currentProduct.category}&limit=4`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    const relatedProducts = data.products.filter(p => p._id !== currentProduct._id).slice(0, 4);
+                    renderRelatedProducts(relatedProducts);
+                }
+            } catch (error) {
+                console.error('Error loading related products:', error);
+            }
+        }
+
+        function renderRelatedProducts(products) {
+            const relatedGrid = document.getElementById('relatedProducts');
+            if (!relatedGrid) return;
+            
+            if (products.length === 0) {
+                relatedGrid.innerHTML = '<p style="grid-column: 1/-1; text-align: center;">No related products found.</p>';
+                return;
+            }
+            
+            relatedGrid.innerHTML = products.map(product => `
+                <div class="product-card">
+                    <img src="${product.imageUrl}" alt="${product.name}" class="product-image" 
+                         onerror="this.src='https://picsum.photos/seed/${product._id}/280/250.jpg'">
+                    <div class="product-info">
+                        <h3 class="product-name">${product.name}</h3>
+                        <div class="product-price">$${product.price.toFixed(2)}</div>
+                        <p class="product-description">${product.description.substring(0, 80)}...</p>
+                        <div class="product-actions">
+                            <a href="/products/${product._id}" class="btn btn-outline">View Details</a>
+                            <button class="btn btn-primary" onclick="addToCart('${product._id}')">
+                                Add to Cart
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+    </script>
+</body>
+</html>

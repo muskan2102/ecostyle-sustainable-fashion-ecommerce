@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page Not Found - EcoStyle Sustainable Fashion</title>
+    <meta name="description" content="The page you're looking for doesn't exist. Return to EcoStyle homepage to continue shopping for sustainable fashion.">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header>
+        <nav class="container">
+            <a href="/" class="logo">EcoStyle</a>
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu">☰</button>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/add-product">Add Product</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li>
+                    <a href="/cart" class="cart-icon">
+                        🛒 Cart
+                        <span class="cart-count" style="display: none;">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 404 Content -->
+    <section style="padding: 6rem 0; text-align: center;">
+        <div class="container">
+            <div style="font-size: 8rem; margin-bottom: 2rem; color: var(--light-green);">🌿</div>
+            <h1 style="font-family: var(--font-heading); font-size: 3rem; color: var(--primary-green); margin-bottom: 1rem;">404</h1>
+            <h2 style="font-family: var(--font-heading); color: var(--primary-green); margin-bottom: 1rem;">Page Not Found</h2>
+            <p style="font-size: 1.2rem; color: var(--dark-gray); margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                Oops! The page you're looking for seems to have wandered off into the sustainable wilderness. 
+                Let us help you find your way back to eco-friendly fashion.
+            </p>
+            
+            <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-bottom: 3rem;">
+                <a href="/" class="btn btn-primary">Go Home</a>
+                <a href="/products" class="btn btn-outline">Shop Products</a>
+                <a href="/cart" class="btn btn-secondary">View Cart</a>
+            </div>
+
+            <!-- Search -->
+            <div style="max-width: 400px; margin: 0 auto;">
+                <div style="display: flex; gap: 0.5rem;">
+                    <input type="text" placeholder="Search for sustainable fashion..." 
+                           style="flex: 1; padding: 0.75rem 1rem; border: 2px solid var(--medium-gray); border-radius: var(--border-radius);"
+                           onkeypress="if(event.key === 'Enter') searchProducts(this.value)">
+                    <button onclick="searchProducts(this.previousElementSibling.value)" 
+                            class="btn btn-primary">Search</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Categories -->
+    <section style="background-color: var(--pale-green); margin-top: 3rem;">
+        <div class="container">
+            <h2 class="section-title">Browse Popular Categories</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 2rem;">
+                <a href="/products?category=t-shirts" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: var(--white); padding: 2rem; border-radius: var(--border-radius); text-align: center; transition: var(--transition); cursor: pointer;"
+                         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-lg)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">👕</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Organic T-Shirts</h3>
+                        <p style="color: var(--medium-gray); font-size: 0.9rem;">Soft, comfortable, and sustainable</p>
+                    </div>
+                </a>
+                
+                <a href="/products?category=hoodies" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: var(--white); padding: 2rem; border-radius: var(--border-radius); text-align: center; transition: var(--transition); cursor: pointer;"
+                         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-lg)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">🧥</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Recycled Hoodies</h3>
+                        <p style="color: var(--medium-gray); font-size: 0.9rem;">Warm and eco-friendly</p>
+                    </div>
+                </a>
+                
+                <a href="/products?category=shoes" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: var(--white); padding: 2rem; border-radius: var(--border-radius); text-align: center; transition: var(--transition); cursor: pointer;"
+                         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-lg)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">👟</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Biodegradable Shoes</h3>
+                        <p style="color: var(--medium-gray); font-size: 0.9rem;">Footwear that returns to earth</p>
+                    </div>
+                </a>
+                
+                <a href="/products?category=accessories" style="text-decoration: none; color: inherit;">
+                    <div style="background-color: var(--white); padding: 2rem; border-radius: var(--border-radius); text-align: center; transition: var(--transition); cursor: pointer;"
+                         onmouseover="this.style.transform='translateY(-5px)'; this.style.boxShadow='var(--shadow-lg)'"
+                         onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='var(--shadow-sm)'">
+                        <div style="font-size: 3rem; margin-bottom: 1rem;">👜</div>
+                        <h3 style="color: var(--primary-green); margin-bottom: 0.5rem;">Handmade Accessories</h3>
+                        <p style="color: var(--medium-gray); font-size: 0.9rem;">Unique and ethically crafted</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Help Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Looking for Something Specific?</h2>
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+                <p style="font-size: 1.1rem; margin-bottom: 2rem; color: var(--dark-gray);">
+                    If you can't find what you're looking for, here are some helpful links and resources:
+                </p>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem;">
+                    <a href="/products" style="text-decoration: none;">
+                        <div style="background-color: var(--light-gray); padding: 1.5rem; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🛍️</div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">All Products</h4>
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Browse our full collection</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/orders" style="text-decoration: none;">
+                        <div style="background-color: var(--light-gray); padding: 1.5rem; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">📋</div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Order History</h4>
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Track your purchases</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/add-product" style="text-decoration: none;">
+                        <div style="background-color: var(--light-gray); padding: 1.5rem; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">➕</div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Add Product</h4>
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Contribute to our collection</p>
+                        </div>
+                    </a>
+                    
+                    <a href="/" style="text-decoration: none;">
+                        <div style="background-color: var(--light-gray); padding: 1.5rem; border-radius: var(--border-radius); text-align: center;">
+                            <div style="font-size: 2rem; margin-bottom: 0.5rem;">🏠</div>
+                            <h4 style="color: var(--primary-green); margin-bottom: 0.5rem;">Homepage</h4>
+                            <p style="font-size: 0.9rem; color: var(--medium-gray);">Start fresh</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About EcoStyle</h3>
+                    <p>We're committed to making sustainable fashion accessible and affordable for everyone who cares about the planet.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/products">All Products</a></li>
+                        <li><a href="/products?category=t-shirts">T-Shirts</a></li>
+                        <li><a href="/products?category=hoodies">Hoodies</a></li>
+                        <li><a href="/products?category=shoes">Shoes</a></li>
+                        <li><a href="/products?category=accessories">Accessories</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="/orders">Order History</a></li>
+                        <li><a href="/cart">Shopping Cart</a></li>
+                        <li><a href="#shipping">Shipping Info</a></li>
+                        <li><a href="#returns">Returns</a></li>
+                        <li><a href="#contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Connect With Us</h3>
+                    <p>Follow our journey towards a more sustainable fashion industry.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="margin-right: 1rem;">📧 Newsletter</a>
+                        <a href="#" style="margin-right: 1rem;">📘 Facebook</a>
+                        <a href="#" style="margin-right: 1rem;">📷 Instagram</a>
+                        <a href="#">🐦 Twitter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 EcoStyle. All rights reserved. | Sustainable Fashion for a Better Tomorrow</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Message Container -->
+    <div id="messageContainer"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/app.js"></script>
+    <script>
+        function searchProducts(query) {
+            if (query && query.trim().length >= 2) {
+                window.location.href = `/products?search=${encodeURIComponent(query.trim())}`;
+            } else {
+                window.location.href = '/products';
+            }
+        }
+
+        // Log 404 errors for analytics
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('404 Error:', {
+                url: window.location.href,
+                referrer: document.referrer,
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString()
+            });
+        });
+    </script>
+</body>
+</html>
