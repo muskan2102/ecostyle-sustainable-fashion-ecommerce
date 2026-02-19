@@ -336,7 +336,7 @@ function renderProducts(productsToRender) {
             <img src="${product.imageUrl}" alt="${product.name}" class="product-image" 
                      style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"
                      onload="console.log('✅ Image loaded:', this.src)"
-                     onerror="console.log('❌ Image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/280/250.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/280x250/2d5016/ffffff?text=${encodeURIComponent(product.name)}'}">
+                     onerror="console.log('❌ Image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/280/250.jpg'; this.onerror=function(){this.src='https://picsum.photos/seed/fallback-${product._id}/280/250.jpg'}">
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-price">${product.price.toFixed(2)}</div>
@@ -369,7 +369,7 @@ function renderFeaturedProducts(featuredProducts) {
             <img src="${product.imageUrl}" alt="${product.name}" class="product-image" 
                      style="width: 100%; height: 200px; object-fit: cover; border-radius: 8px;"
                      onload="console.log('✅ Image loaded:', this.src)"
-                     onerror="console.log('❌ Image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/280/250.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/280x250/2d5016/ffffff?text=${encodeURIComponent(product.name)}'}">
+                     onerror="console.log('❌ Image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/280/250.jpg'; this.onerror=function(){this.src='https://picsum.photos/seed/fallback-${product._id}/280/250.jpg'}">
             <div class="product-info">
                 <h3 class="product-name">${product.name}</h3>
                 <div class="product-price">$${product.price.toFixed(2)}</div>
@@ -398,7 +398,7 @@ function renderProductDetails(product) {
                 <img src="${product.imageUrl}" alt="${product.name}" class="product-detail-image" 
                          style="width: 100%; max-width: 600px; height: auto; border-radius: 8px;"
                          onload="console.log('✅ Detail image loaded:', this.src)"
-                         onerror="console.log('❌ Detail image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/600x500.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/600x500/2d5016/ffffff?text=${encodeURIComponent(product.name)}'}">
+                         onerror="console.log('❌ Detail image failed, using fallback'); this.src='https://picsum.photos/seed/${product._id}/600x500.jpg'; this.onerror=function(){this.src='https://picsum.photos/seed/fallback-${product._id}/600x500.jpg'}">
             </div>
             <div class="product-detail-info">
                 <h1>${product.name}</h1>
@@ -499,7 +499,7 @@ function renderCartItems(cartItems) {
             <img src="${item.product.imageUrl}" alt="${item.product.name}" class="cart-item-image" 
                     style="width: 80px; height: 80px; object-fit: cover; border-radius: 4px;"
                     onload="console.log('✅ Cart image loaded:', this.src)"
-                    onerror="console.log('❌ Cart image failed, using fallback'); this.src='https://picsum.photos/seed/${item.product._id}/80x80.jpg'; this.onerror=function(){this.src='https://via.placeholder.com/80x80/2d5016/ffffff?text=${encodeURIComponent(item.product.name)}'}">
+                    onerror="console.log('❌ Cart image failed, using fallback'); this.src='https://picsum.photos/seed/${item.product._id}/80x80.jpg'; this.onerror=function(){this.src='https://picsum.photos/seed/fallback-${item.product._id}/80x80.jpg'}">
             <div class="cart-item-details">
                 <div class="cart-item-name">${item.product.name}</div>
                 <div class="cart-item-price">$${item.product.price.toFixed(2)}</div>

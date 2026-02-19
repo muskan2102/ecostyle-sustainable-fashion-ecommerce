@@ -1,7 +1,6 @@
 # 🧪 PayPal Sandbox Setup Guide
 
-## 🚨 **Current Issue**
-Your PayPal integration is configured correctly for USD, but you need to set up your actual PayPal Sandbox credentials.
+
 
 ## 📋 **What You Need:**
 

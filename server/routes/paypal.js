@@ -4,6 +4,12 @@ const paypal = require('paypal-rest-sdk');
 const Order = require('../models/Order');
 
 // Configure PayPal SDK
+console.log('PayPal Configuration:', {
+  mode: process.env.PAYPAL_MODE || 'sandbox',
+  clientId: process.env.PAYPAL_CLIENT_ID ? 'SET' : 'NOT SET',
+  clientSecret: process.env.PAYPAL_CLIENT_SECRET ? 'SET' : 'NOT SET'
+});
+
 paypal.configure({
   mode: process.env.PAYPAL_MODE || 'sandbox',
   client_id: process.env.PAYPAL_CLIENT_ID,
@@ -243,6 +249,29 @@ router.post('/cancel-payment', async (req, res) => {
   } catch (error) {
     console.error('Error handling PayPal payment cancellation:', error);
     res.status(500).json({ error: 'Failed to handle payment cancellation' });
+  }
+});
+
+// GET /api/paypal/test - Test PayPal configuration
+router.get('/test', (req, res) => {
+  try {
+    const config = {
+      mode: process.env.PAYPAL_MODE || 'sandbox',
+      clientId: process.env.PAYPAL_CLIENT_ID ? 'SET' : 'NOT SET',
+      clientSecret: process.env.PAYPAL_CLIENT_SECRET ? 'SET' : 'NOT SET'
+    };
+    
+    console.log('PayPal Test Endpoint - Configuration:', config);
+    
+    res.json({
+      success: true,
+      message: 'PayPal configuration test',
+      config: config,
+      paypalSdkLoaded: !!paypal
+    });
+  } catch (error) {
+    console.error('PayPal test error:', error);
+    res.status(500).json({ error: 'PayPal test failed', details: error.message });
   }
 });
 

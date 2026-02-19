@@ -9,6 +9,7 @@ require('dotenv').config();
 const productRoutes = require('./routes/products');
 const orderRoutes = require('./routes/orders');
 const paypalRoutes = require('./routes/paypal');
+const uploadRoutes = require('./routes/upload');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,7 +21,7 @@ app.use(helmet({
       defaultSrc: ["'self'"],
       styleSrc: ["'self'", "'unsafe-inline'", "https://fonts.googleapis.com"],
       fontSrc: ["'self'", "https://fonts.gstatic.com"],
-      imgSrc: ["'self'", "data:", "https://via.placeholder.com", "https://picsum.photos"],
+      imgSrc: ["'self'", "data:", "https://via.placeholder.com", "https://picsum.photos", "http://localhost:3000", "https://*.picsum.photos"],
       scriptSrc: ["'self'", "'unsafe-inline'"],
       scriptSrcAttr: ["'unsafe-inline'"],
       connectSrc: ["'self'"],
@@ -56,11 +57,15 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 // Serve static files from client directory
 app.use(express.static(path.join(__dirname, '../client')));
 
+// Serve uploaded images
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Serve product images
+app.use('/images', express.static(path.join(__dirname, '../images')));
+
 // MongoDB connection
-mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ecostyle', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-})
+mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ecostyle')
+
 .then(() => {
   console.log('✅ Connected to MongoDB');
 })
@@ -73,6 +78,7 @@ mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/ecostyle', 
 app.use('/api/products', productRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/paypal', paypalRoutes);
+app.use('/api/upload-image', uploadRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

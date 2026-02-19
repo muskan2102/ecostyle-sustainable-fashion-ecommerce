@@ -11,7 +11,7 @@ const seedProducts = [
     price: 29.99,
     category: "t-shirts",
     ecoTags: ["organic-cotton", "fair-trade", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/organic-tshirt-classic/400/400.jpg",
+    imageUrl: "/images/Classic Organic Cotton T-Shirt.png",
     stockQty: 50,
     featured: true,
     sustainabilityScore: 85
@@ -22,7 +22,7 @@ const seedProducts = [
     price: 34.99,
     category: "t-shirts",
     ecoTags: ["recycled-materials", "organic-cotton", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/recycled-graphic-tee/400/400.jpg",
+    imageUrl: "/images/Recycled Cotton Graphic Tee.png",
     stockQty: 35,
     featured: false,
     sustainabilityScore: 90
@@ -33,7 +33,7 @@ const seedProducts = [
     price: 39.99,
     category: "t-shirts",
     ecoTags: ["organic-cotton", "water-conservation", "biodegradable"],
-    imageUrl: "https://picsum.photos/seed/hemp-blend-tee/400/400.jpg",
+    imageUrl: "/images/Hemp Blend T-Shirt.png",
     stockQty: 25,
     featured: true,
     sustainabilityScore: 92
@@ -46,7 +46,7 @@ const seedProducts = [
     price: 69.99,
     category: "hoodies",
     ecoTags: ["recycled-materials", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/recycled-fleece-hoodie/400/400.jpg",
+    imageUrl: "/images/Recycled Fleece Hoodie.png",
     stockQty: 30,
     featured: true,
     sustainabilityScore: 88
@@ -57,7 +57,7 @@ const seedProducts = [
     price: 79.99,
     category: "hoodies",
     ecoTags: ["organic-cotton", "fair-trade", "ethical-manufacturing"],
-    imageUrl: "https://picsum.photos/seed/organic-cotton-hoodie/400/400.jpg",
+    imageUrl: "/images/Organic Cotton Zip-Up Hoodie.png",
     stockQty: 20,
     featured: false,
     sustainabilityScore: 86
@@ -68,7 +68,7 @@ const seedProducts = [
     price: 74.99,
     category: "hoodies",
     ecoTags: ["organic-cotton", "biodegradable", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/bamboo-pullover/400/400.jpg",
+    imageUrl: "/images/Bamboo Blend Pullover.jpg",
     stockQty: 15,
     featured: true,
     sustainabilityScore: 91
@@ -81,7 +81,7 @@ const seedProducts = [
     price: 89.99,
     category: "shoes",
     ecoTags: ["biodegradable", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/natural-rubber-sneakers/400/400.jpg",
+    imageUrl: "/images/Natural Rubber Sneakers.jpg",
     stockQty: 25,
     featured: true,
     sustainabilityScore: 94
@@ -92,7 +92,7 @@ const seedProducts = [
     price: 59.99,
     category: "shoes",
     ecoTags: ["biodegradable", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/cork-sandals/400/400.jpg",
+    imageUrl: "/images/Cork Sandals.jfif",
     stockQty: 40,
     featured: false,
     sustainabilityScore: 96
@@ -103,7 +103,7 @@ const seedProducts = [
     price: 84.99,
     category: "shoes",
     ecoTags: ["biodegradable", "water-conservation", "organic-cotton"],
-    imageUrl: "https://picsum.photos/seed/hemp-canvas-shoes/400/400.jpg",
+    imageUrl: "/images/Hemp Canvas Shoes.jpg",
     stockQty: 18,
     featured: true,
     sustainabilityScore: 93
@@ -116,7 +116,7 @@ const seedProducts = [
     price: 44.99,
     category: "accessories",
     ecoTags: ["handmade", "organic-cotton", "fair-trade"],
-    imageUrl: "https://picsum.photos/seed/handwoven-organic-scarf/400/400.jpg",
+    imageUrl: "/images/Handwoven Organic Scarf.png",
     stockQty: 12,
     featured: true,
     sustainabilityScore: 95
@@ -127,7 +127,7 @@ const seedProducts = [
     price: 54.99,
     category: "accessories",
     ecoTags: ["recycled-materials", "handmade"],
-    imageUrl: "https://picsum.photos/seed/recycled-leather-belt/400/400.jpg",
+    imageUrl: "/images/Recycled Leather Belt.png",
     stockQty: 22,
     featured: false,
     sustainabilityScore: 87
@@ -138,7 +138,7 @@ const seedProducts = [
     price: 64.99,
     category: "accessories",
     ecoTags: ["biodegradable", "water-conservation"],
-    imageUrl: "https://picsum.photos/seed/bamboo-sunglasses/400/400.jpg",
+    imageUrl: "/images/Bamboo Sunglasses.png",
     stockQty: 30,
     featured: true,
     sustainabilityScore: 89
@@ -149,7 +149,7 @@ const seedProducts = [
     price: 24.99,
     category: "accessories",
     ecoTags: ["organic-cotton", "fair-trade"],
-    imageUrl: "https://picsum.photos/seed/organic-tote-bag/400/400.jpg",
+    imageUrl: "/images/Organic Cotton Tote Bag.png",
     stockQty: 60,
     featured: false,
     sustainabilityScore: 92
@@ -160,7 +160,7 @@ const seedProducts = [
     price: 149.99,
     category: "accessories",
     ecoTags: ["recycled-materials", "carbon-neutral"],
-    imageUrl: "https://picsum.photos/seed/ocean-plastic-watch/400/400.jpg",
+    imageUrl: "/images/Recycled Ocean Plastic Watch.png",
     stockQty: 8,
     featured: true,
     sustainabilityScore: 98

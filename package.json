@@ -12,18 +12,25 @@
     "docker:up": "docker-compose up",
     "docker:down": "docker-compose down"
   },
-  "keywords": ["ecommerce", "sustainable", "fashion", "paypal", "mongodb"],
+  "keywords": [
+    "ecommerce",
+    "sustainable",
+    "fashion",
+    "paypal",
+    "mongodb"
+  ],
   "author": "EcoStyle Team",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^8.0.3",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
-    "paypal-rest-sdk": "^1.8.1",
-    "path": "^0.12.7",
-    "helmet": "^7.1.0",
+    "express": "^4.18.2",
     "express-rate-limit": "^7.1.5",
+    "helmet": "^7.1.0",
+    "mongoose": "^8.0.3",
+    "multer": "^2.0.2",
+    "path": "^0.12.7",
+    "paypal-rest-sdk": "^1.8.1",
     "validator": "^13.11.0"
   },
   "devDependencies": {

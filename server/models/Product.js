@@ -43,9 +43,11 @@ const productSchema = new mongoose.Schema({
     required: [true, 'Product image URL is required'],
     validate: {
       validator: function(v) {
-        return /^https?:\/\/.+\.(jpg|jpeg|png|webp)$/i.test(v) || /^https:\/\/via\.placeholder\.com\//.test(v);
+        return /^https?:\/\/.+\.(jpg|jpeg|png|webp)$/i.test(v) || 
+               /^https:\/\/via\.placeholder\.com\//.test(v) || 
+               /^\/images\/.+\.(jpg|jpeg|png|jfif|webp)$/i.test(v);
       },
-      message: 'Please provide a valid image URL'
+      message: 'Please provide a valid image URL or image path'
     }
   },
   stockQty: {

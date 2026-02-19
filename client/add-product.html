@@ -83,10 +83,22 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="imageUrl" class="form-label">Image URL *</label>
-                        <input type="url" id="imageUrl" name="imageUrl" class="form-input" required 
-                               placeholder="https://example.com/image.jpg">
-                        <small style="color: var(--medium-gray);">Provide a URL to a product image. Use placeholder images if needed.</small>
+                        <label for="productImage" class="form-label">Product Image *</label>
+                        <input type="file" id="productImage" name="productImage" class="form-input" 
+                               accept="image/jpeg,image/jpg,image/png" required>
+                        <div id="imagePreview" style="margin-top: 1rem; text-align: center; display: none;">
+                            <img id="previewImg" style="max-width: 200px; max-height: 200px; border-radius: 8px; border: 2px solid var(--light-green);">
+                            <p style="margin-top: 0.5rem; color: var(--medium-gray);">Image preview</p>
+                        </div>
+                        <small style="color: var(--medium-gray);">Upload JPG or PNG image (max 5MB). Recommended size: 800x800px.</small>
+                        <div id="uploadProgress" style="margin-top: 1rem; display: none;">
+                            <div style="background-color: var(--light-gray); border-radius: 4px; padding: 0.5rem;">
+                                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <div class="loading" style="width: 20px; height: 20px;"></div>
+                                    <span>Uploading image...</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-group">
@@ -246,14 +258,94 @@
     <!-- JavaScript -->
     <script src="/js/app.js"></script>
     <script>
+        let uploadedImageUrl = '';
+
         document.addEventListener('DOMContentLoaded', function() {
             const form = document.getElementById('addProductForm');
             const resetBtn = document.getElementById('resetForm');
+            const imageInput = document.getElementById('productImage');
+            const imagePreview = document.getElementById('imagePreview');
+            const previewImg = document.getElementById('previewImg');
+            const uploadProgress = document.getElementById('uploadProgress');
+
+            // Handle image preview
+            imageInput.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    // Validate file
+                    if (!file.type.match('image.*')) {
+                        showMessage('Please select an image file (JPG or PNG)', 'error');
+                        return;
+                    }
+                    
+                    if (file.size > 5 * 1024 * 1024) { // 5MB
+                        showMessage('Image size must be less than 5MB', 'error');
+                        return;
+                    }
+
+                    // Show preview
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        previewImg.src = e.target.result;
+                        imagePreview.style.display = 'block';
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
 
             // Handle form submission
             form.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
+                const imageFile = imageInput.files[0];
+                if (!imageFile) {
+                    showMessage('Please select a product image', 'error');
+                    return;
+                }
+
+                // Upload image first
+                await uploadImage(imageFile);
+            });
+
+            // Handle reset
+            resetBtn.addEventListener('click', function() {
+                form.reset();
+                imagePreview.style.display = 'none';
+                uploadedImageUrl = '';
+            });
+
+            // Upload image function
+            async function uploadImage(file) {
+                const formData = new FormData();
+                formData.append('image', file);
+
+                uploadProgress.style.display = 'block';
+
+                try {
+                    const response = await fetch('/api/upload-image', {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const result = await response.json();
+
+                    if (response.ok) {
+                        uploadedImageUrl = result.imageUrl;
+                        uploadProgress.style.display = 'none';
+                        await submitProductForm();
+                    } else {
+                        uploadProgress.style.display = 'none';
+                        showMessage(result.error || 'Failed to upload image', 'error');
+                    }
+                } catch (error) {
+                    uploadProgress.style.display = 'none';
+                    console.error('Error uploading image:', error);
+                    showMessage('Error uploading image', 'error');
+                }
+            }
+
+            // Submit product form after image upload
+            async function submitProductForm() {
                 const formData = new FormData(form);
                 const productData = {
                     name: formData.get('name'),
@@ -261,7 +353,7 @@
                     description: formData.get('description'),
                     price: parseFloat(formData.get('price')),
                     stockQty: parseInt(formData.get('stockQty')),
-                    imageUrl: formData.get('imageUrl'),
+                    imageUrl: uploadedImageUrl, // Use uploaded image URL
                     sustainabilityScore: parseInt(formData.get('sustainabilityScore')) || 75,
                     featured: formData.has('featured'),
                     ecoTags: []
@@ -287,6 +379,8 @@
                     if (response.ok) {
                         showMessage('Product added successfully!', 'success');
                         form.reset();
+                        imagePreview.style.display = 'none';
+                        uploadedImageUrl = '';
                         
                         // Redirect to products page after 2 seconds
                         setTimeout(() => {
@@ -297,32 +391,7 @@
                     }
                 } catch (error) {
                     console.error('Error adding product:', error);
-                    showMessage('Error adding product. Please try again.', 'error');
-                }
-            });
-
-            // Handle form reset
-            resetBtn.addEventListener('click', function() {
-                form.reset();
-                showMessage('Form reset successfully', 'success');
-            });
-
-            // Add image preview functionality
-            const imageUrlInput = document.getElementById('imageUrl');
-            imageUrlInput.addEventListener('blur', function() {
-                const url = this.value;
-                if (url && isValidUrl(url)) {
-                    // You could add image preview here if needed
-                    console.log('Image URL validated:', url);
-                }
-            });
-
-            function isValidUrl(string) {
-                try {
-                    new URL(string);
-                    return true;
-                } catch (_) {
-                    return false;
+                    showMessage('Error adding product', 'error');
                 }
             }
         });
