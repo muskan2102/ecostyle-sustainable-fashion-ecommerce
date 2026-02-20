@@ -166,13 +166,24 @@ router.get('/:id', async (req, res) => {
 // POST /api/products - Create new product
 router.post('/', async (req, res) => {
   try {
+    console.log('BODY:', req.body);
+    console.log('FILE:', req.file);
+    
     const productData = req.body;
+    
+    // Handle image file if uploaded
+    if (req.file) {
+      productData.imageUrl = `/uploads/${req.file.filename}`;
+    }
+    
+    console.log('Processed product data:', productData);
     
     // Validate required fields
     const requiredFields = ['name', 'description', 'price', 'category', 'imageUrl', 'stockQty'];
     const missingFields = requiredFields.filter(field => !productData[field]);
     
     if (missingFields.length > 0) {
+      console.log('Missing required fields:', missingFields);
       return res.status(400).json({ 
         error: 'Missing required fields', 
         missingFields 
@@ -181,6 +192,7 @@ router.post('/', async (req, res) => {
 
     // Validate price
     if (productData.price <= 0 || productData.price > 10000) {
+      console.log('Invalid price:', productData.price);
       return res.status(400).json({ 
         error: 'Price must be between $0.01 and $10,000' 
       });
@@ -188,6 +200,7 @@ router.post('/', async (req, res) => {
 
     // Validate stock
     if (productData.stockQty < 0) {
+      console.log('Invalid stock quantity:', productData.stockQty);
       return res.status(400).json({ 
         error: 'Stock quantity cannot be negative' 
       });
@@ -196,6 +209,7 @@ router.post('/', async (req, res) => {
     // Validate category
     const validCategories = ['t-shirts', 'hoodies', 'shoes', 'accessories'];
     if (!validCategories.includes(productData.category.toLowerCase())) {
+      console.log('Invalid category:', productData.category);
       return res.status(400).json({ 
         error: 'Invalid category. Must be one of: ' + validCategories.join(', ') 
       });

@@ -81,7 +81,10 @@ productSchema.index({ featured: 1 });
 
 // Virtual for formatted price
 productSchema.virtual('formattedPrice').get(function() {
-  return `$${this.price.toFixed(2)}`;
+  if (this.price == null || this.price === undefined || isNaN(this.price)) {
+    return '$0.00';
+  }
+  return `$${parseFloat(this.price).toFixed(2)}`;
 });
 
 // Virtual for in stock status

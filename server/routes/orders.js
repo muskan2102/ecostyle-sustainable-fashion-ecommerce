@@ -15,10 +15,11 @@ router.get('/', async (req, res) => {
       sortOrder = 'desc'
     } = req.query;
 
-    // Build filter object
+    // Build filter object - for demo, return all orders if no filters
     const filter = {};
     
-    if (email) {
+    // Only apply filters if provided (for demo purposes)
+    if (email && email !== 'demo@example.com') {
       filter.buyerEmail = email.toLowerCase();
     }
     
@@ -57,26 +58,38 @@ router.get('/', async (req, res) => {
   }
 });
 
-// GET /api/orders/:id - Get single order by ID
-router.get('/:id', async (req, res) => {
+// GET /api/orders/history - Get order history (all orders for demo)
+router.get('/history', async (req, res) => {
   try {
-    const { id } = req.params;
-    
-    if (!validator.isMongoId(id)) {
-      return res.status(400).json({ error: 'Invalid order ID format' });
-    }
+    const { 
+      page = 1, 
+      limit = 20,
+      sortBy = 'createdAt',
+      sortOrder = 'desc'
+    } = req.query;
 
-    const order = await Order.findById(id)
-      .populate('items.product', 'name imageUrl description ecoTags');
-    
-    if (!order) {
-      return res.status(404).json({ error: 'Order not found' });
-    }
+    // For demo, return all orders sorted by creation date
+    const orders = await Order.find({})
+      .populate('items.product', 'name imageUrl description ecoTags')
+      .sort({ [sortBy]: sortOrder === 'desc' ? -1 : 1 })
+      .limit(parseInt(limit))
+      .skip((parseInt(page) - 1) * parseInt(limit));
 
-    res.json({ order });
+    const total = await Order.countDocuments();
+
+    res.json({
+      orders,
+      pagination: {
+        currentPage: parseInt(page),
+        totalPages: Math.ceil(total / parseInt(limit)),
+        totalOrders: total,
+        hasNext: parseInt(page) < Math.ceil(total / parseInt(limit)),
+        hasPrev: parseInt(page) > 1
+      }
+    });
   } catch (error) {
-    console.error('Error fetching order:', error);
-    res.status(500).json({ error: 'Failed to fetch order' });
+    console.error('Error fetching order history:', error);
+    res.status(500).json({ error: 'Failed to fetch order history' });
   }
 });
 
@@ -99,6 +112,34 @@ router.get('/order-number/:orderNumber', async (req, res) => {
     res.json({ order });
   } catch (error) {
     console.error('Error fetching order by number:', error);
+    res.status(500).json({ error: 'Failed to fetch order' });
+  }
+});
+
+// GET /api/orders/:id - Get single order by ID
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params;
+    
+    // More lenient ID validation - try both MongoDB ObjectId and order number
+    let order;
+    
+    if (validator.isMongoId(id)) {
+      order = await Order.findById(id)
+        .populate('items.product', 'name imageUrl description ecoTags');
+    } else {
+      // Try to find by order number if not a valid ObjectId
+      order = await Order.findOne({ orderNumber: id.toUpperCase() })
+        .populate('items.product', 'name imageUrl description ecoTags');
+    }
+    
+    if (!order) {
+      return res.status(404).json({ error: 'Order not found' });
+    }
+
+    res.json({ order });
+  } catch (error) {
+    console.error('Error fetching order:', error);
     res.status(500).json({ error: 'Failed to fetch order' });
   }
 });

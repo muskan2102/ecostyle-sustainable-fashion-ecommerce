@@ -117,20 +117,110 @@ router.post('/create-payment', async (req, res) => {
   }
 });
 
-// POST /api/paypal/execute-payment - Execute PayPal payment
-router.post('/execute-payment', async (req, res) => {
+// GET /api/paypal/execute-payment - Handle PayPal redirect (GET with query params)
+router.get('/execute-payment', async (req, res) => {
   try {
-    const { paymentId, payerId, orderData } = req.body;
+    const { paymentId, PayerID, token } = req.query;
     
-    if (!paymentId || !payerId) {
+    console.log('PayPal GET execute request received:', { 
+      paymentId, 
+      payerId: PayerID, 
+      token,
+      method: req.method,
+      query: req.query
+    });
+    
+    if (!paymentId || !PayerID) {
+      console.error('Missing PayPal parameters in GET:', { paymentId, payerId: PayerID });
       return res.status(400).json({ 
-        error: 'Payment ID and Payer ID are required' 
+        error: 'Payment ID and Payer ID are required',
+        received: { paymentId, payerId: PayerID }
       });
     }
 
-    // Force USD currency for execution
+    // For GET requests, we need to create a minimal order or get from session
+    // This is a simplified version - in production, you'd store order data in session
+    const execute_payment_json = {
+      payer_id: PayerID,
+      transactions: [{
+        amount: {
+          currency: 'USD',
+          total: '0.00' // Will be updated based on actual payment
+        }
+      }]
+    };
+
+    paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
+      if (error) {
+        console.error('PayPal GET execution error:', {
+          error: error,
+          paymentId,
+          payerId: PayerID,
+          executeJson: execute_payment_json
+        });
+        return res.status(500).json({ 
+          error: 'Failed to execute PayPal payment',
+          message: error.message,
+          details: error.response ? error.response.details : 'No details available',
+          stack: error.stack
+        });
+      } else {
+        console.log('PayPal GET payment executed successfully:', { 
+          paymentId: payment.id,
+          state: payment.state 
+        });
+        
+        
+        res.json({
+          success: true,
+          message: 'Payment executed successfully',
+          paymentId: payment.id,
+          state: payment.state,
+          redirect: '/orders' 
+        });
+      }
+    });
+  } catch (error) {
+    console.error('PayPal GET execute unexpected error:', error);
+    res.status(500).json({ 
+      error: 'Failed to execute PayPal payment',
+      message: error.message,
+      stack: error.stack
+    });
+  }
+});
+
+
+router.post('/execute-payment', async (req, res) => {
+  try {
+   
+    const { paymentId, payerId, orderData } = { ...req.query, ...req.body };
+    
+    console.log('PayPal execute request received:', { 
+      paymentId, 
+      payerId, 
+      hasOrderData: !!orderData,
+      method: req.method,
+      query: req.query,
+      body: req.body 
+    });
+    
+    if (!paymentId || !payerId) {
+      console.error('Missing PayPal parameters:', { paymentId, payerId });
+      return res.status(400).json({ 
+        error: 'Payment ID and Payer ID are required',
+        received: { paymentId, payerId }
+      });
+    }
+
+
     const currency = 'USD';
-    const totalAmount = parseFloat(orderData.totalAmount).toFixed(2);
+    
+
+    let totalAmount = '0.00';
+    if (orderData && orderData.totalAmount) {
+      totalAmount = parseFloat(orderData.totalAmount).toFixed(2);
+    }
 
     const execute_payment_json = {
       payer_id: payerId,
@@ -150,16 +240,51 @@ router.post('/execute-payment', async (req, res) => {
 
     paypal.payment.execute(paymentId, execute_payment_json, async (error, payment) => {
       if (error) {
-        console.error('PayPal payment execution error:', error);
+        console.error('PayPal payment execution error:', {
+          error: error,
+          paymentId,
+          payerId,
+          executeJson: execute_payment_json
+        });
         return res.status(500).json({ 
           error: 'Failed to execute PayPal payment',
-          details: error.response ? error.response.details : error.message
+          message: error.message,
+          details: error.response ? error.response.details : 'No details available',
+          stack: error.stack
         });
       } else {
+        console.log('PayPal payment executed successfully:', { 
+          paymentId: payment.id,
+          state: payment.state 
+        });
         try {
-          // Create order in database after successful payment
+          
+          if (!orderData || !orderData.items) {
+            console.error('Missing order data for order creation');
+            return res.status(400).json({
+              error: 'Order data is required to create order',
+              paymentId: payment.id
+            });
+          }
+
+          console.log('Creating order with data:', {
+            orderData,
+            paymentId: payment.id,
+            paypalPaymentId: payment.transactions[0].related_resources[0].sale.id
+          });
+
           const order = new Order({
-            ...orderData,
+            orderNumber: `ORD-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+            items: orderData.items,
+            totalAmount: orderData.totalAmount,
+            buyerEmail: orderData.buyerEmail || 'demo@example.com',
+            shippingAddress: orderData.shippingAddress || {
+              street: 'Demo Street',
+              city: 'Demo City',
+              state: 'Demo State',
+              zipCode: '12345',
+              country: 'US'
+            },
             paymentProvider: 'paypal',
             paymentStatus: 'completed',
             paypalOrderId: paymentId,
@@ -168,14 +293,31 @@ router.post('/execute-payment', async (req, res) => {
             currency: currency
           });
 
-          await order.save();
+          console.log('Order object created, attempting to save...');
+          
+          try {
+            await order.save();
+            console.log('✅ Order saved successfully:', order.orderNumber);
+          } catch (saveError) {
+            console.error('❌ Order save error:', saveError);
+            console.error('Validation errors:', saveError.errors);
+            return res.status(500).json({
+              error: 'Payment successful but failed to create order',
+              message: saveError.message,
+              details: saveError.errors,
+              stack: saveError.stack
+            });
+          }
 
-          // Populate product details for response
           await order.populate('items.product', 'name imageUrl description ecoTags');
+
+          console.log('Order created and populated successfully:', order.orderNumber);
 
           res.json({
             success: true,
             message: 'Payment completed successfully',
+            orderId: order._id,
+            orderNumber: order.orderNumber,
             order,
             payment: payment,
             currency: currency
@@ -184,18 +326,28 @@ router.post('/execute-payment', async (req, res) => {
           console.error('Error creating order after PayPal payment:', dbError);
           res.status(500).json({ 
             error: 'Payment successful but failed to create order',
-            details: dbError.message
+            message: dbError.message,
+            stack: dbError.stack
           });
         }
       }
     });
   } catch (error) {
-    console.error('Error executing PayPal payment:', error);
-    res.status(500).json({ error: 'Failed to execute PayPal payment' });
+    console.error('PayPal POST execute unexpected error:', {
+      error: error,
+      paymentId,
+      payerId,
+      orderData: orderData
+    });
+    res.status(500).json({ 
+      error: 'Failed to execute PayPal payment',
+      message: error.message,
+      stack: error.stack
+    });
   }
 });
 
-// GET /api/paypal/payment/:paymentId - Get payment details
+
 router.get('/payment/:paymentId', (req, res) => {
   try {
     const { paymentId } = req.params;
@@ -221,7 +373,7 @@ router.get('/payment/:paymentId', (req, res) => {
   }
 });
 
-// POST /api/paypal/cancel-payment - Handle payment cancellation
+
 router.post('/cancel-payment', async (req, res) => {
   try {
     const { paymentId, orderData } = req.body;
@@ -230,7 +382,7 @@ router.post('/cancel-payment', async (req, res) => {
       return res.status(400).json({ error: 'Payment ID is required' });
     }
 
-    // Create order with cancelled status
+   
     const order = new Order({
       ...orderData,
       paymentProvider: 'paypal',
@@ -252,7 +404,7 @@ router.post('/cancel-payment', async (req, res) => {
   }
 });
 
-// GET /api/paypal/test - Test PayPal configuration
+
 router.get('/test', (req, res) => {
   try {
     const config = {
@@ -275,7 +427,7 @@ router.get('/test', (req, res) => {
   }
 });
 
-// GET /api/paypal/config - Get PayPal configuration for frontend
+
 router.get('/config', (req, res) => {
   try {
     res.json({
@@ -289,7 +441,7 @@ router.get('/config', (req, res) => {
   }
 });
 
-// POST /api/paypal/refund/:paymentId - Process refund (admin only)
+
 router.post('/refund/:paymentId', async (req, res) => {
   try {
     const { paymentId } = req.params;
@@ -299,13 +451,13 @@ router.post('/refund/:paymentId', async (req, res) => {
       return res.status(400).json({ error: 'Payment ID is required' });
     }
 
-    // Find the order with this PayPal payment ID
+    
     const order = await Order.findOne({ paypalPaymentId: paymentId });
     if (!order) {
       return res.status(404).json({ error: 'Order not found for this payment' });
     }
 
-    // Force USD currency for refund
+
     const currency = 'USD';
     const refundData = {
       amount: amount ? {
@@ -314,7 +466,7 @@ router.post('/refund/:paymentId', async (req, res) => {
       } : undefined
     };
 
-    // Get the sale ID from the order
+  
     const saleId = order.paypalPaymentId;
     
     console.log('Processing PayPal refund with USD currency:', {
@@ -333,7 +485,7 @@ router.post('/refund/:paymentId', async (req, res) => {
         });
       } else {
         try {
-          // Update order status
+       
           order.paymentStatus = 'refunded';
           order.notes = reason || `Refunded: ${refund.id}`;
           order.refundCurrency = currency;

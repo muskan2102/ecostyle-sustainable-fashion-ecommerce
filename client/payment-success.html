@@ -217,11 +217,20 @@
                 const urlParams = new URLSearchParams(window.location.search);
                 const paymentId = urlParams.get('paymentId');
                 const payerId = urlParams.get('PayerID');
+                
+                console.log('PayPal redirect parameters:', {
+                    paymentId,
+                    payerId,
+                    urlParams: window.location.search,
+                    fullUrl: window.location.href
+                });
 
                 if (paymentId && payerId) {
                     // Complete the PayPal payment
+                    console.log('Completing PayPal payment with parameters:', { paymentId, payerId });
                     await completePayPalPayment(paymentId, payerId);
                 } else {
+                    console.log('No PayPal parameters found, trying to get recent order');
                     // Try to get the most recent order
                     const response = await fetch('/api/orders?limit=1');
                     const data = await response.json();
@@ -243,6 +252,13 @@
             try {
                 const checkoutData = JSON.parse(sessionStorage.getItem('ecostyle-checkout-data') || '{}');
                 
+                console.log('Sending PayPal execution request:', {
+                    paymentId,
+                    payerId,
+                    checkoutData,
+                    hasCheckoutData: !!checkoutData.items
+                });
+                
                 const response = await fetch('/api/paypal/execute-payment', {
                     method: 'POST',
                     headers: {
@@ -256,6 +272,12 @@
                 });
 
                 const result = await response.json();
+                
+                console.log('PayPal execution response:', {
+                    status: response.status,
+                    ok: response.ok,
+                    result
+                });
 
                 if (response.ok) {
                     orderData = result.order;
@@ -263,6 +285,7 @@
                     renderOrderDetails();
                     showMessage('Payment completed successfully!', 'success');
                 } else {
+                    console.error('PayPal execution failed:', result);
                     showMessage(result.error || 'Failed to complete payment', 'error');
                 }
             } catch (error) {

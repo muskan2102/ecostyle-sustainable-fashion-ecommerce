@@ -42,17 +42,18 @@ const orderSchema = new mongoose.Schema({
     trim: true,
     validate: {
       validator: function(v) {
+        if (!v) return true; // Allow empty email for demo
         return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
       },
       message: 'Please provide a valid email address'
     }
   },
   shippingAddress: {
-    street: { type: String, required: true },
-    city: { type: String, required: true },
-    state: { type: String, required: true },
-    zipCode: { type: String, required: true },
-    country: { type: String, required: true, default: 'US' }
+    street: { type: String, required: false },
+    city: { type: String, required: false },
+    state: { type: String, required: false },
+    zipCode: { type: String, required: false },
+    country: { type: String, required: false, default: 'US' }
   },
   paymentProvider: {
     type: String,
@@ -100,7 +101,10 @@ orderSchema.index({ paypalOrderId: 1 });
 
 // Virtual for formatted total
 orderSchema.virtual('formattedTotal').get(function() {
-  return `$${this.totalAmount.toFixed(2)}`;
+  if (this.totalAmount == null || this.totalAmount === undefined || isNaN(this.totalAmount)) {
+    return '$0.00';
+  }
+  return `$${parseFloat(this.totalAmount).toFixed(2)}`;
 });
 
 // Virtual for item count
@@ -108,18 +112,21 @@ orderSchema.virtual('itemCount').get(function() {
   return this.items.reduce((total, item) => total + item.quantity, 0);
 });
 
-// Pre-save middleware to generate order number
-orderSchema.pre('save', async function(next) {
+// Pre-validate middleware to generate order number before validation
+orderSchema.pre('validate', async function(next) {
   if (this.isNew && !this.orderNumber) {
     const timestamp = Date.now().toString(36).toUpperCase();
     const random = Math.random().toString(36).substring(2, 8).toUpperCase();
     this.orderNumber = `ECO-${timestamp}-${random}`;
   }
-  
+  next();
+});
+
+// Pre-save middleware to round total amount
+orderSchema.pre('save', async function(next) {
   if (this.isModified('totalAmount')) {
     this.totalAmount = Math.round(this.totalAmount * 100) / 100; // Round to 2 decimal places
   }
-  
   next();
 });
 
